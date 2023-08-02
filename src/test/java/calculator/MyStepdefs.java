@@ -1,11 +1,10 @@
-package cucumber;
+package calculator;
 
-import calculator.Calculator;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+import org.junit.Before;
 
 public class MyStepdefs {
     private Calculator calculator;
@@ -14,14 +13,19 @@ public class MyStepdefs {
     private String operator;
     private int result;
 
+    @Before
+    public void before(){
+        calculator = new Calculator();
+    }
     @Given("^Two input values, (\\d+) and (\\d+)$")
     public void twoInputValuesAnd(int arg0, int arg1) {
         value1 = arg0;
         value2 = arg1;
     }
 
-    @When("^I add the two values$")
-    public void iAddTheTwoValues() {
+    @When("^I add two values$")
+    public void iAddTwoValues() {
+        calculator = new Calculator();
         result = calculator.add(value1, value2);
         System.out.print(result);
     }
@@ -31,9 +35,9 @@ public class MyStepdefs {
         Assert.assertEquals(arg0, result);
     }
 
-    @When("^I add two values$")
-    public void iAddTwoValues() {
-    }
+//    @When("^I add two values$")
+//    public void iAddTwoValues() {
+//    }
 
 //    @When("^press the multiply button$")
 //    public void pressTheMultiplyButton() {
