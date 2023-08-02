@@ -1,6 +1,6 @@
 @tag
   Feature: Calculator
-  Scenario: add two numbers
-    Given Two input values, 1 and 2
-    When I add the Two values
-    Then I expect the result 3
+  Scenario: Calculate two numbers
+    Given Two input values and operator, 1 and 2 and 3
+    When I Calculate the Two values with operator
+    Then I expect the result 4
