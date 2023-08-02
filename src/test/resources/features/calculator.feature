@@ -1,12 +1,16 @@
-@ParameterType("red|blue|yellow")  // regexp
-  public Color color(String color){  // type, name (from method)
-    return new Color(color);       // transformer function
-  }
+#@ParameterType("red|blue|yellow")  // regexp
+#  public Color color(String color){  // type, name (from method)
+#    return new Color(color);       // transformer function
+#  }
+
 @tag
 Feature: Calculator
-  Scenario: Two input values, 1 and 2
-  When I add two values
-  Then I expect the result 3
+
+
+  Scenario: add two numbers
+    Given Two input values, 1 and 2
+    When I add two values
+    Then I expect the result 3
 
 #  Scenario: Multiplication
 #    Given Two input values, 1 and 2
