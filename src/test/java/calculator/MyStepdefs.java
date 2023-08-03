@@ -10,7 +10,7 @@ public class MyStepdefs {
     private Calculator calculator;
     private int value1;
     private int value2;
-    private String operator;
+    private char operator;
     private int result;
 
     @Before
@@ -56,35 +56,28 @@ public class MyStepdefs {
         System.out.println(result);
     }
 
-    @Then("^I expect the result (-?\\d+)$")
-    public void iExpectTheResult(int arg0) {
-        Assert.assertEquals(arg0, result);
+    @Given("^Two input values, (-?\\d+) and (-?\\d+) and operator (.)$")
+    public void twoInputValuesAndAndOperator(int arg1, int arg2, char operator){
+        value1 = arg1;
+        value2 = arg2;
+        this.operator = operator;
     }
 
-//    @When("^I press the <operator> button$")
-//    public void iPressTheOperatorButton(String operator) {
-//        System.out.println(operator);
-//    }
+    @When("^I calculate$")
+    public void iCalculate(){
+        calculator = new Calculator();
+        result = calculator.calculate(value1,value2,operator);
+    }
+    @Then("^I expect the result (-?\\d+|error)$")
+    public void iExpectTheResult(String expectedValue) {
+        if (expectedValue.equals("error")){
 
-//    @When("I press the (\\w) button")
-//    public void pressTheOperatorButton(String operator) {
-//        calculator = new Calculator();
-//        System.out.println(operator);
-//        switch (operator) {
-//            case "*":
-//                result = calculator.multiply(value1, value2);
-//                break;
-//            case "/":
-//                try {
-//                    result = calculator.divide(value1, value2);
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                }
-//                break;
-//            case "^":
-//                result = calculator.power(value1, value2);
-//                break;
-//        }
-//    }
+        }else {
+            int expectedResult = Integer.parseInt(expectedValue);
+            Assert.assertEquals(expectedResult, result);
+        }
+
+    }
+
 
 }

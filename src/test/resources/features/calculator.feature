@@ -31,3 +31,27 @@ Feature: Calculator
       | 1     | 12     | 13     |
       | -1    | 6      | 5      |
       | 2     | 2      | 4      |
+
+  Scenario Outline: Multiplication
+    Given Two input values, <first> and <second>
+    When press the multiply button
+    Then I expect the result <result>
+    Examples:
+      | first | second | result |
+      | 2     | 3      | 6      |
+      | 4     | 6      | 24     |
+      | -1    | 2      | -2     |
+      | 0     | 3      | 0      |
+
+  Scenario Outline: calculate this
+    Given Two input values, <first> and <second> and operator <operator>
+    When I calculate
+    Then I expect the result <result>
+    Examples:
+      | first | second | operator | result |
+      | 2     | 3      | *        | 6      |
+      | 4     | 6      | +        | 10     |
+      | -1    | 2      | +        | 1      |
+#      | 2     | 0      | /        | 'error' |
+      | 0     | 3      | ^        | 0      |
+      | 5     | 0      | ^        | 1      |

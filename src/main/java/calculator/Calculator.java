@@ -9,9 +9,9 @@ public class Calculator {
         return a * b;
     }
 
-    public int divide(int a, int b) throws Exception {
+    public int divide(int a, int b) {
         if (b == 0) {
-            throw new Exception();
+            throw new ArithmeticException("error");
         }
         return a / b;
     }
@@ -23,5 +23,21 @@ public class Calculator {
             b--;
         }
         return result;
+    }
+
+    public int calculate(int a, int b, char operator){
+        switch (operator){
+            case '+':
+                return add(a,b);
+            case '*':
+                return multiply(a,b);
+            case '/':
+                return divide(a,b);
+            case '^':
+                return power(a,b);
+            default:
+                throw new RuntimeException("error");
+
+        }
     }
 }
