@@ -12,25 +12,25 @@ Feature: Calculator
     When I add two values
     Then I expect the result 3
 
-#  Scenario: Multiplication
-#    Given Two input values, 1 and 2
-#    When press the multiply button
-#    Then the result should be 2 on the screen
-#
-#  Scenario: Division
-#    Given Two input values, 1 and 2
-#    When press the divide button
-#    Then the result should be 2 on the screen
-#
-#  Scenario: Exponentiation
-#    Given Two input values, 1 and 2
-#    When press the power button
-#    Then the result should be 2 on the screen
-#
+  Scenario: Multiplication
+    Given Two input values, 1 and 2
+    When press the multiply button
+    Then I expect the result 2
+
+  Scenario: Division
+    Given Two input values, 4 and 2
+    When press the divide button
+    Then I expect the result 2
+
+  Scenario: Exponentiation
+    Given Two input values, 2 and 2
+    When press the power button
+    Then I expect the result 4
+
 #  Scenario Outline: calculator
 #    Given Two input values, <first> and <second>
-#    When press the <operator> button
-#    Then the result should be <result> on the screen
+#    When I press the <operator> button
+#    Then I expect the result <result>
 #    Examples:
 #      | first | second | operator | result |
 #      | 6     | 2      | *        | 12     |

@@ -14,9 +14,10 @@ public class MyStepdefs {
     private int result;
 
     @Before
-    public void before(){
+    public void before() {
         calculator = new Calculator();
     }
+
     @Given("^Two input values, (\\d+) and (\\d+)$")
     public void twoInputValuesAnd(int arg0, int arg1) {
         value1 = arg0;
@@ -30,50 +31,58 @@ public class MyStepdefs {
         System.out.print(result);
     }
 
+    @When("^press the multiply button$")
+    public void pressTheMultiplyButton() {
+        calculator = new Calculator();
+        result = calculator.multiply(value1, value2);
+        System.out.println(result);
+    }
+
+    @When("^press the divide button$")
+    public void pressTheDivideButton() {
+        calculator = new Calculator();
+        try {
+            result = calculator.divide(value1, value2);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(result);
+    }
+
+    @When("^press the power button$")
+    public void pressThePowerButton() {
+        calculator = new Calculator();
+        result = calculator.power(value1, value2);
+        System.out.println(result);
+    }
+
     @Then("^I expect the result (\\d+)$")
     public void iExpectTheResult(int arg0) {
         Assert.assertEquals(arg0, result);
     }
 
-//    @When("^I add two values$")
-//    public void iAddTwoValues() {
+//    @When("^I press the <operator> button$")
+//    public void iPressTheOperatorButton(String operator) {
+//        System.out.println(operator);
 //    }
 
-//    @When("^press the multiply button$")
-//    public void pressTheMultiplyButton() {
-//        result = calculator.multiply(value1, value2);
-//        System.out.println(result);
-//    }
-//
-//    @When("^press the divide button$")
-//    public void pressTheDivideButton() {
-//        result = calculator.divide(value1, value2);
-//        System.out.println(result);
-//    }
-//
-//    @When("^press the power button$")
-//    public void pressThePowerButton() {
-//        result = calculator.power(value1, value2);
-//        System.out.println(result);
-//    }
-//
-//    @Then("^the result should be (\\d+) on the screen$")
-//    public void theResultShouldBeOnTheScreen(int arg0) {
-//        Assert.assertEquals(arg0, result);
-//    }
-//
-//
-//    @When("I press the {string} button")
+//    @When("I press the (\\w) button")
 //    public void pressTheOperatorButton(String operator) {
+//        calculator = new Calculator();
+//        System.out.println(operator);
 //        switch (operator) {
 //            case "*":
-//                calculator.multiply(value1, value2);
+//                result = calculator.multiply(value1, value2);
 //                break;
 //            case "/":
-//                calculator.divide(value1, value2);
+//                try {
+//                    result = calculator.divide(value1, value2);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
 //                break;
 //            case "^":
-//                calculator.power(value1, value2);
+//                result = calculator.power(value1, value2);
 //                break;
 //        }
 //    }
