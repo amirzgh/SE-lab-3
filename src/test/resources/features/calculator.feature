@@ -1,8 +1,3 @@
-#@ParameterType("red|blue|yellow")  // regexp
-#  public Color color(String color){  // type, name (from method)
-#    return new Color(color);       // transformer function
-#  }
-
 @tag
 Feature: Calculator
 
@@ -27,13 +22,12 @@ Feature: Calculator
     When press the power button
     Then I expect the result 4
 
-#  Scenario Outline: calculator
-#    Given Two input values, <first> and <second>
-#    When I press the <operator> button
-#    Then I expect the result <result>
-#    Examples:
-#      | first | second | operator | result |
-#      | 6     | 2      | *        | 12     |
-#      | 6     | 2      | /        | 3      |
-#      | 6     | 2      | ^        | 36     |
-
+  Scenario Outline: add two numbers
+    Given Two input values, <first> and <second>
+    When I add two values
+    Then I expect the result <result>
+    Examples:
+      | first | second | result |
+      | 1     | 12     | 13     |
+      | -1    | 6      | 5      |
+      | 2     | 2      | 4      |
