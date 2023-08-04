@@ -1,3 +1,5 @@
+import calculator.Calculator;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +11,13 @@ public class Main {
         int number1 = scanner.nextInt();
         System.out.println("please Enter your second number");
         int number2 = scanner.nextInt();
+        System.out.println("Chose and type you operator: * ^ / +");
+        String operator = scanner.nextLine();
 
+        Calculator calculator = new Calculator();
+
+        int result = calculator.calculate(number2, number2, operator.charAt(0));
+
+        System.out.println("your Result is : " + result);
     }
 }
