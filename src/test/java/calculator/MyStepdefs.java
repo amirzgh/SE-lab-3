@@ -12,6 +12,7 @@ public class MyStepdefs {
     private int value2;
     private char operator;
     private int result;
+    private boolean error = false;
 
     @Before
     public void before() {
@@ -44,7 +45,7 @@ public class MyStepdefs {
         try {
             result = calculator.divide(value1, value2);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            error = true;
         }
         System.out.println(result);
     }
@@ -57,22 +58,28 @@ public class MyStepdefs {
     }
 
     @Given("^Two input values, (-?\\d+) and (-?\\d+) and operator (.)$")
-    public void twoInputValuesAndAndOperator(int arg1, int arg2, char operator){
+    public void twoInputValuesAndAndOperator(int arg1, int arg2, char operator) {
         value1 = arg1;
         value2 = arg2;
         this.operator = operator;
     }
 
     @When("^I calculate$")
-    public void iCalculate(){
+    public void iCalculate() {
         calculator = new Calculator();
-        result = calculator.calculate(value1,value2,operator);
+        try {
+            result = calculator.calculate(value1, value2, operator);
+        } catch (Exception e) {
+            error = true;
+        }
     }
-    @Then("^I expect the result (-?\\d+|error)$")
-    public void iExpectTheResult(String expectedValue) {
-        if (expectedValue.equals("error")){
 
-        }else {
+    @Then("^I expect the result (-?\\d+|\\w+)$")
+    public void iExpectTheResult(String expectedValue) {
+        if (error) {
+            error = false;
+            Assert.assertEquals(expectedValue, "error");
+        } else {
             int expectedResult = Integer.parseInt(expectedValue);
             Assert.assertEquals(expectedResult, result);
         }

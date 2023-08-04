@@ -49,9 +49,9 @@ Feature: Calculator
     Then I expect the result <result>
     Examples:
       | first | second | operator | result |
+      | 2     | 0      | /        | error  |
       | 2     | 3      | *        | 6      |
       | 4     | 6      | +        | 10     |
       | -1    | 2      | +        | 1      |
-#      | 2     | 0      | /        | 'error' |
       | 0     | 3      | ^        | 0      |
       | 5     | 0      | ^        | 1      |
