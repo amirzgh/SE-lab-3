@@ -30,7 +30,12 @@ public class Main {
         }
 
         Calculator calculator = new Calculator();
-        int result = calculator.calculate(number1, number2, operator.charAt(0));
+        int result = 0;
+        try {
+            result = calculator.calculate(number1, number2, operator.charAt(0));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println("your Result is : " + result);
     }
