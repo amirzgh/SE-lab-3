@@ -43,6 +43,19 @@ Feature: Calculator
       | -1    | 2      | -2     |
       | 0     | 3      | 0      |
 
+
+  Scenario Outline: Division
+    Given Two input values, <first> and <second>
+    When press the divide button
+    Then I expect the result <result>
+    Examples:
+      | first | second | result |
+      | 2     | 0      | error  |
+      | 4     | 2      | 2      |
+      | -4    | 2      | -2     |
+      | 0     | 3      | 0      |
+
+
   Scenario Outline: calculate this
     Given Two input values, <first> and <second> and operator <operator>
     When I calculate

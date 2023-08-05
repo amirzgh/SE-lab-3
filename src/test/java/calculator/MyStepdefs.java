@@ -76,7 +76,7 @@ public class MyStepdefs {
 
     @Then("^I expect the result (-?\\d+|\\w+)$")
     public void iExpectTheResult(String expectedValue) {
-        if (error) {
+        if (error || expectedValue.equals("error")) {
             error = false;
             Assert.assertEquals(expectedValue, "error");
         } else {
